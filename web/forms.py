@@ -8,10 +8,10 @@ class EtudiantForm(forms.ModelForm): # STOCKER LE MODEL DANS LE CHAMPS
     class Meta: 
         model = Etudiant
         fields = (
-            'nom', 'prenom','email','contact','numero_cni','carte_cni', 'carte_etudiant''matricule','lieu_de_naissance','date_de_naissance', 'sexe', 'ufr', 'filiere', 'specialite', 'niveau', 'commune', 'universite', 'ville'
+            'name', 'prenom','email','contact','numero_cni','carte_cni', 'carte_etudiant','matricule','lieu_de_naissance','date_de_naissance', 'sexe', 'ufr', 'filiere', 'specialite', 'niveau', 'commune', 'universite', 'ville'
         )
         Widgets = {
-            'nom' : forms.TextInput(attrs={'class': 'from-control', 'placeholder': 'Nom'}),
+            'name' : forms.TextInput(attrs={'class': 'from-control', 'placeholder': 'Nom'}),
             'prenom' : forms.TextInput(attrs={'class': 'from-control', 'placeholder': 'Prenom'}),
             'email' : forms.EmailInput(attrs={'class': 'from-control', 'placeholder': 'Email'}),
             'contact' : forms.TextInput(attrs={'class': 'from-control', 'placeholder': 'Contact'}),

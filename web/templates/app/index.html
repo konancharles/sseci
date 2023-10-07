@@ -628,9 +628,9 @@
           
 
           <div class="col-lg-12">
-            <form action="{% url 'web.accueil' %}" enctype="multipart/form-data" method="post" role="form" class="php-email-form">
+            <form action="{% url 'web:acceuil' %}" enctype="multipart/form-data" method="post" role="form" class="php-email-form">
               {% csrf_token %}
-              <input type="hidden" name="next_page" value="{% url 'web:accueil' %}">
+              <input type="hidden" name="next_page" value="{% url 'web:acceuil' %}">
                   <div class="alert  alert-dismissible fade 
                     {% if message == 'success' %}
                       show alert-success
@@ -649,22 +649,40 @@
 
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Nom </span> </p>
-                  <input type="text" name="name" class="form-control" id="name" placeholder=" Nom" required>
+                  {{form.name}}
+                  {% if form.name.errors %}
+                    <ul class= "text-danger">
+                        {% for error in from.name.errors %}
+                            <li>{{ error }} </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                  
+                  
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Prenoms </span>  </p>
-                  <input type="text" class="form-control" name="email" id="prenom" placeholder="Prenom" required>
+                  {{form.prenom}}
+                  {% if form.prenom.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.prenom.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
-                  <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Sexe </span>  </p>
-                  <select type="text" class="form-select" arial-label="Default select example" name="user_sexe" id="Sexe" required>
-                    <option selected>Selectionner votre sexe <option>
-                    <option value="1">MASCULIN <option>
-                    <option value="2">FEMININ <option>
-                    
-                  </select>
+                  <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> sexe </span>  </p> 
+                  {{form.sexe}}
+                  {% if form.sexe.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.sexe.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}  
                 </div>
               </div>
 
@@ -672,51 +690,114 @@
               <div class="row mt-3"> <!--mt -3 ous permet de marquer l'espacement sur l'application -->
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Lieu de naissance </span> </p>  
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Lieu de naissance" required>
+                  {{form.lieu_de_naissance}}
+                  {% if form.lieu_de_naissance.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.lieu_de_naissance.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Date de naissance </span> </p>
-                  <input type="date" class="form-control" name="email" id="email" placeholder="Date de naissance" required>
+                  {{form.date_de_naissance}}
+                  {% if form.date_de_naissance.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.date_de_naissance.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Email </span>  </p>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+                  {{form.email}}
+                  {% if form.email.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.email.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
               </div>
 
               <div class="row mt-3"><!--mt -3 ous permet de marquer l'espacement sur l'application -->
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Numero de téléphone </span>  </p>
-                  <input type="tel" name="name" class="form-control" id="name" placeholder="Numero de téléphone" required>
+                  {{form.contact}}
+                  {% if form.contact.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.contact.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Numero de carte d'étudiant </span>  </p>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Numero de carte d'étudiant" required>
+                  {{form.carte_etudiant}}
+                  {% if form.carte_etudiant.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.carte_etudiant.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Numero cni </span>  </p>
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Numero cni" required>
+                  {{form.carte_cni}}
+                  {% if form.carte_cni.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.carte_cni.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
               </div>
 
               <div class="row mt-3"><!--mt -3 ous permet de marquer l'espacement sur l'application -->
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Télécharger la carte d'etudiant (pdj-jpg-png) </span> </p>
-                  <input type="file" name="name" class="form-control" id="name" placeholder="Télécharger la carte d'etudiant (pdj-jpg-png)" required>
+                  {{form.carte_etudiant}}
+                  {% if form.carte_etudiant.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.carte_etudiant.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Télécharger cni (pdj-jpg-png) </span>  </p>
-                  <input type="file" class="form-control" name="email" id="email" placeholder="Télécharger Numero cni (pdj-jpg-png)" required>
+                  {{form.carte_cni}}
+                  {% if form.carte_cni.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.carte_cni.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                 </div>
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Université d'acceuil </span>  </p>
-                  <select type="text" class="form-select" arial-label="Default select example" name="Université d'acceuil" id="email" required>
+                  {{form.universite}}
+                  {% if form.universite.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.universite.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre université d'acceuil <option>
                       {% for u in universite %}
                       <option value="{{u.id}}">{{u.name}} <option>
@@ -729,7 +810,14 @@
               <div class="row mt-3"><!--mt -3 ous permet de marquer l'espacement sur l'application -->
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Specialité </span>  </p>
-                  <select type="text" class="form-select" arial-label="Default select example" id="name" required>
+                  {{form.sepecialite}}
+                  {% if form.sepecialite.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.sepecialite.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre spécialité <option>
                       {% for b in sepecialite %}
                       <option value="{{b.id}}">{{b.libelle}}<option>
@@ -740,7 +828,14 @@
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> UFR </span>  </p>
-                  <select type="text" class="form-select" arial-label="Default select example" name="UFR" id="email" required>
+                  {{form.ufr}}
+                  {% if form.ufr.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.ufr.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                   <option selected>Selectionner votre ufr <option>
                     {% for a in universite %}
                     <option value="{{a.id}}">{{a.name}}<option>
@@ -751,7 +846,14 @@
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> filière </span>  </p>
-                  <select type="text" class="form-select" name="email" id="email" arial-label="Default select example"  required>
+                  {{form.filiere}}
+                  {% if form.filiere.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.filiere.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre filière <option>
                       {% for c in filiere %}
                       <option value="{{c.id}}">{{c.libelle}}<option>
@@ -765,7 +867,14 @@
               <div class="row mt-3"><!--mt -3 ous permet de marquer l'espacement sur l'application -->
                 <div class="col-md-4 form-group">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Niveau d'étude </span>  </p>
-                  <select type="text" class="form-select" name="email" id="email" arial-label="Default select example"  required>
+                  {{form.prenom}}
+                  {% if form.prenom.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.prenom.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre Niveau d'étude <option>
                       {% for d in niveau %}
                       <option value="{{d.id}}">{{d.libelle}}<option>
@@ -776,7 +885,14 @@
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Ville de résidence </span>  </p>
-                  <select type="text" class="form-select" name="email" id="email" arial-label="Default select example"  required>
+                  {{form.ville}}
+                  {% if form.ville.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.ville.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre ville de résidence <option>
                       {% for e in ville %}
                       <option value="{{e.id}}">{{e.libelle}}<option>
@@ -787,7 +903,14 @@
 
                 <div class="col-md-4 form-group mt-3 mt-md-0">
                   <p class= "text-center text-warning fst-italic"> <span class="badge bg-warning"> Commune de résidence </span>  </p>
-                  <select type="text" class="form-select" name="email" id="email" arial-label="Default select example"  required>
+                  {{form.commune}}
+                  {% if form.commune.errors %}
+                    <ul class= "text-danger">
+                      {% for error in from.commune.errors %}
+                          <li>{{ error }} </li>
+                      {% endfor %}
+                   </ul>
+                   {% endif %}
                     <option selected>Selectionner votre Commune de résidence <option>
                       {% for f in commune %}
                       <option value="{{f.id}}"> {{f.libelle}}<option>

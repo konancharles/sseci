@@ -21,11 +21,11 @@ def generate_random_file_name(length=20):
     return random_name
 
 # Create your views here.
-def accceuil(request):
+def acceuil(request):
     message = ""  #AJOUTER
     #print(Etudiant.objects.all())
     form = EtudiantForm()
-    if request.methode == 'POST':
+    if request.method == 'POST':
         form = EtudiantForm(request.POST, request.FILES)
         if form.is_valid():
             carte_etudiant_name = generate_random_file_name() + '.pdf'
