@@ -1,3 +1,9 @@
 django==4.1.7
 pillow==9.1.0
 psycopg2==2.9.5
+
+# ajoute une autre liste de logiciel téléchargé durant l'hebergment sur render 
+dj-database-url==2.1.0
+sqlparse==0.4.4
+gunicorn==21.2.0
+whitenoise==6.5.0 

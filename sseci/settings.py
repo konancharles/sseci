@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os # 1er etatpe pour le parametrage de notre apk importation du systheme dexploitation pour avoire toutes les fonctionalite de leur systheme 
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,9 @@ SECRET_KEY = 'django-insecure---9499#ys4_h3b=3ml+8!p$2d7&y8uinvu@osa!0_$7e$(+^2x
 DEBUG = True
 
 ALLOWED_HOSTS = []
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME: 
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMideddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,6 +91,14 @@ DATABASES = {
     }
 }
 
+# configuration de la base de donnée sur le serveur
+DATABASES = {
+    'default': dj_database_url.config (
+        default= "postgres://sseci0_user:x9dk8WvsBTnDtPmPaUS4N9NjwWlc7PeJ@dpg-ckgl4rsldqrs73djci5g-a.oregon-postgres.render.com/sseci0", conn_max_age=600
+        
+    )
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -123,6 +136,14 @@ USE_TZ = True
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/uploads/' #AJOUTER 
 STATIC_URL = 'static/'
+if not DEBUG:
+  # Tell Django to copy statics to the ' staticfiles' directory
+  # in your application directory on Render.
+   STATIC_ROOT = os.path.join(BASE_DIR,'stacticfiles')
+   
+  # Turn on WhiteNoise storage backend that takes care of compressing stactic files
+  # and creating unique names for each version so they can safely be cached forever.
+   STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
